@@ -1,11 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+//components
+import Home from './Home'
+import Header from './Header'
 
 function App() {
   return (
     <React.Fragment>
-<div>hello world</div>
+      <Header/>
+      <Home/>
     </React.Fragment>
   );
 }
