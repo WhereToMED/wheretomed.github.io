@@ -1,0 +1,57 @@
+main {
+    background-color: #6f42c1;
+    text-align: center;
+     display: flex;
+      flex-direction: column;
+
+     @media only screen and (min-width: 1024px) {
+        display: flex;
+        flex-direction: row;
+        padding-bottom:5rem;
+ }
+
+}
+
+
+
+
+.text {
+    color: white;
+    font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.2;
+    padding: 3rem 3rem 0;
+}
+
+p {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    font-weight: 300;
+    padding: 0 3rem;
+    
+}
+
+.get-started {
+    color: white;
+    background: linear-gradient(45deg, #FF9900 5%, #6800D1 100%);
+    cursor: pointer;
+    border:none;
+    border-radius: 3rem;
+    padding: 1rem 1.5rem;
+
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+
+.devices {
+    margin-top: 5rem;
+    width: 100%;
+    height: 100%;
+    
+}

@@ -1,13 +1,25 @@
 import React from 'react';
+import './style.scss'
+import devices from '../../images/dashboard_full_3.png'
 
 const Home = () => {
     return (
         <container>
-            <img src='http://www.wheretomed.com/images/bg_2.png'/>
-        <h2>Authentic anti-malaria, antibiotic & pain medicine.</h2>
-        <p>The days of running from shop to shop to find safe quality and affordable medicine are over!</p>
-        <button>Get Started</button>
-        <img src='' />
+            <main className='home'>
+
+                <div>
+                    <div className='text'> 
+                        <h2>Find better choices near you.</h2>
+                        <p>The days of running shop to shop to find the most affordable good quality medicine are over. WhereToMED brings you instant medicine comparison to save you time and money.</p>
+                    </div>
+                    <button className='get-started'>Get Started</button>
+                </div>
+
+                <div >
+                 <img className='devices' src={devices} />
+                </div>
+            
+            </main>
         </container>
     )
 }

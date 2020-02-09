@@ -1,7 +1,7 @@
 import React from 'react';
 
 import logo from '../../images/logob.png'
-import './style.css'
+import './style.scss'
 
 const Header = () => {
     return (
@@ -9,15 +9,8 @@ const Header = () => {
             <div className='image-container'>
             <img src={logo } alt="where to med logo"/>
             </div>
-        
-        <ul>
-            <li>Home</li>
-            <li>The Solution</li>
-            <li>Our Team</li>
-            <li>Partnerships</li>
-            <li>Contact Us</li>
-            <li>Join</li>
-        </ul>
+
+      {/**  <img src={devices} alt="devices"/>*/} 
         </container>
     )
 }
