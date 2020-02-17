@@ -4,7 +4,7 @@ import devices from '../../images/dashboard_full_3.png'
 
 const Home = () => {
     return (
-        <container>
+        <>
             <main className='home'>
 
                 <div>
@@ -20,7 +20,7 @@ const Home = () => {
                 </div>
             
             </main>
-        </container>
+        </>
     )
 }
 
