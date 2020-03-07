@@ -2,6 +2,11 @@ import React, {useState, useEffect}from 'react';
 import './style.scss'
 import List from '../List'
 
+const data = [{name:"Malaron", price:2.50, needPrescription:false, inStock:true, pharmacies:['pharmacy 1', 'pharmacy 2', 'pharmacy 3', 'pharmacy 4'],locations:['Labadi', 'Osu', 'Dansoman', 'South Odorkor'], dosage: "high", rating: 2 },
+{name:"doxyclyclone", price:2.00, needPrescription:false, inStock:true, pharmacies:['pharmacy 1', 'pharmacy 3'],locations:['Dansoman', 'South Odorkor', 'Mallam', 'McCarthy'], dosage: "Low", rating: 4 },
+{name:"Larium", price:3.00, needPrescription:true, inStock:true, pharmacies:['pharmacy 1', 'pharmacy 5'],locations:['Labadi', 'Osu', 'Spintex'], dosage: "medium", rating: 3 }
+]
+
 const Search = () => {
 
     const [result, setResults] = useState();
@@ -20,12 +25,12 @@ const Search = () => {
          Patients- name, age, location
          */
 
-         setResults([{name:"Malaron", price:2.50, needPrescription:false, inStock:true, pharmacies:['pharmacy 1', 'pharmacy 2', 'pharmacy 3', 'pharmacy 4'],locations:['Labadi', 'Osu', 'Dansoman', 'South Odorkor'], dosage: "high" }])
+         setResults(data)
      }
 
      useEffect(() => {
          //prompt show list component here
-        console.log(result)
+        //console.log(result)
     })
 
     return (
@@ -34,6 +39,7 @@ const Search = () => {
             <main className='search'>
             <h2 className='start'>Start Your Search</h2>
             <form className='search_form'>
+                <label>Medicine</label>
             <input type="search" />
             <button type='button' onClick={() => getResults()}>enter</button>
             </form>
