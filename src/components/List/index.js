@@ -1,12 +1,12 @@
-import React, {useState, useEffect}from 'react';
+import React, {useState, useEffect} from 'react';
 import './style.scss'
 
 const List = ({data}) => {
 
-    const [originalData, setOriginalData] = useState();
+    const originalData = data
+
     const [filterTerm, setFilterTerm] = useState();
     const [currentListData, setCurrentListData] = useState();
-    const [locations, setLocations] = useState();
 
     const priceLow = () => originalData.sort((a,b) => parseFloat(b.price) - parseFloat(a.price))
     const priceHigh = () => originalData.sort((a,b) => parseFloat(a.price) - parseFloat(b.price))
@@ -27,50 +27,50 @@ const List = ({data}) => {
         setCurrentListData(dataRank)
     }
 
-    const filterLocation = (location) => {
-        if (location === 'All locations') setCurrentListData(originalData)
-        
-        const dataRank = []
-
-        originalData.map((data) => data.locations.includes(location) && dataRank.push(data))
-
-        setCurrentListData(dataRank)
-    }
- 
      useEffect(() => {
         if(filterTerm ) {
-            filterTerm === 'price high' && setCurrentListData(priceHigh())
-            filterTerm === 'price low' && setCurrentListData(priceLow())
-            filterTerm === 'rating high' && setCurrentListData(ratingHigh())
-            filterTerm === 'rating low' && setCurrentListData(ratingLow())
+
+           if( filterTerm === 'price high') {
+               const newList = priceHigh()
+               setCurrentListData(newList)
+           }
+
+            if(filterTerm === 'price low') {
+                const newList = priceLow()
+                setCurrentListData(newList)
+            }
+
+            if(filterTerm === 'rating high') {
+                const newList = ratingHigh()
+                setCurrentListData(newList)
+            }
+
+            if(filterTerm === 'rating low') {
+                const newList = ratingLow()
+                setCurrentListData(newList)
+            }
         }
 
-        setOriginalData(data)
-    })
+
+        !currentListData && setCurrentListData(data)
+       
+    }, [currentListData])
 
     const listData= currentListData || originalData
-    let locArray = []
 
-    const getLocations = () => {
-        if (locations) return 
-        listData && listData.map((d, index) => {
-            d.locations.map((dL, index) => {
-                if (locArray.indexOf(dL) >= 0) return 
-                    locArray.push(dL)
-                })
-                setLocations(locArray)
-        })
+    const getPharmacies = () => {
+        alert('you need to be logged in to view')
     }
+    
             
     return (
         <>
             <main className='list'>
+            <button onClick={() => window.location.reload()}>Reset</button>
                 <div>
+
+                    
                     Filter by:
-                    <select onChange={(event) =>filterLocation(event.currentTarget.value) } onClick={() =>getLocations() }>
-                        <option>All locations</option>
-                        {locations && locations.map((d, index) =>  <option key={index} >{d}</option>) }}
-                        </select>
                         <select onChange={(event) =>filterPrice(event.currentTarget.value) }>
                             <option>Price</option>
                             <option>Low</option>
@@ -81,7 +81,7 @@ const List = ({data}) => {
                             <option>Low</option>
                             <option>High</option>
                         </select>
-                        <button onClick={() => setCurrentListData(originalData)}>Reset</button>
+                       
 
 
                 </div>
@@ -91,9 +91,9 @@ const List = ({data}) => {
                         <h4>{`GH$${d.price}`}</h4>
                         <h4>{`Prescription needed: ${d.needPrescription}`}</h4>
                         <h4>{`In stock: ${d.inStock}`}</h4>
-                        <h4>{`Locations: ${d.locations}`}</h4>
                         <h4>{`Rating: ${d.rating}`}</h4>
                         <h4>{`Dosage: ${d.dosage}`}</h4>
+                        <button onClick={getPharmacies}>Get Pharmacies</button>
                     </li>
                 )}
                 </ul>}
@@ -107,8 +107,11 @@ export default List
 
 
 /**
- Sort out dynamic filtering
-Get reset button to work
+ 
+
+<h4>{`Locations: ${d.locations}`}</h4>
+ 
+ Sort out dynamic filtering of list
 
  Filter list on search of medication - need to do
 

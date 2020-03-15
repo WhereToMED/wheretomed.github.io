@@ -9,9 +9,17 @@ const data = [{name:"Malaron", price:2.50, needPrescription:false, inStock:true,
 
 const Search = () => {
 
-    const [result, setResults] = useState();
+    const [dataLocations, setLocations] = useState();
+    const [currentData, setCurrentData] = useState();
+    const [showList, setShowList] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+    const [locationValue, setLocationValue] = useState('')
+
+    const results = data;
 
      const getResults = () => {
+        setCurrentData(results)
+        return;
 
         /**
          1. check if there are any results in database
@@ -24,28 +32,66 @@ const Search = () => {
          Medicines - name, location, dosage, price, need prescription, locations, pharmacies(relational link)
          Patients- name, age, location
          */
-
-         setResults(data)
-     }
+  }
 
      useEffect(() => {
+         getLocations()
+       // setResults(data)
+       // !results && getLocations()
+        
          //prompt show list component here
-        //console.log(result)
-    })
+    }, [currentData])
+
+    const filterLocation = (location) => {
+        !location === 'All locations' && setLocationValue(location)
+        if (location === 'All locations') {
+            setCurrentData(results)
+        return}
+
+        const dataRank = []
+
+        results.map((res) => res.locations.includes(location) && dataRank.push(res))
+        setCurrentData(dataRank)
+    }
+
+     let locArray = []
+
+    const getLocations = () => {
+        if (dataLocations) return 
+        results && results.map((d, index) => {
+            d.locations.map((dL, index) => {
+                if (locArray.indexOf(dL) >= 0) return 
+                    locArray.push(dL)
+                })
+                setLocations(locArray)
+        })
+    }
+
+    const showResults = (e) => {
+        e.preventDefault()
+        setShowList(true)
+    }
+
+    const showEnter = !inputValue.length && !locationValue.length
 
     return (
 
         <>
             <main className='search'>
-            <h2 className='start'>Start Your Search</h2>
-            <form className='search_form'>
+            <h2 className='start'>{!showList ?'Start Your Search' : 'Results'}</h2>
+            {!showList && <form className='search_form'>
                 <label>Medicine</label>
-            <input type="search" />
-            <button type='button' onClick={() => getResults()}>enter</button>
-            </form>
+            <input type="search"  onChange={(e) => setInputValue(e.currentTarget.value)}/>
+            <select onChange={(event) =>filterLocation(event.currentTarget.value) }>
+                        <option>All locations</option>
+                        {dataLocations && dataLocations.map((d, index) => <option key={index} >{d}</option>)}
+                        </select>
+            <button disabled={showEnter} type='button' onClick={(e) => showResults(e)}>enter</button>
+            
+            </form>}
              
             {/*new result component*/}
-            {result && <List data={result}/>
+            {showList && <List data={currentData}/>
             }
    
         
