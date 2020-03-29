@@ -1,72 +1,70 @@
-import React, {useState, useEffect} from 'react';
-import './style.scss'
+import React, { useState, useEffect } from "react";
+import "./style.scss";
 
-const List = ({data}) => {
+const List = ({ data }) => {
+  // const originalData = data
 
-    const originalData = data
+  // const [filterTerm, setFilterTerm] = useState();
+  // const [currentListData, setCurrentListData] = useState();
 
-    const [filterTerm, setFilterTerm] = useState();
-    const [currentListData, setCurrentListData] = useState();
+  // const priceLow = () => originalData.sort((a,b) => parseFloat(b.price) - parseFloat(a.price))
+  // const priceHigh = () => originalData.sort((a,b) => parseFloat(a.price) - parseFloat(b.price))
 
-    const priceLow = () => originalData.sort((a,b) => parseFloat(b.price) - parseFloat(a.price))
-    const priceHigh = () => originalData.sort((a,b) => parseFloat(a.price) - parseFloat(b.price))
+  // const ratingLow = () => originalData.sort((a,b) => parseFloat(b.rating) - parseFloat(a.rating))
+  // const ratingHigh = () => originalData.sort((a,b) => parseFloat(a.rating) - parseFloat(b.rating))
 
-    const ratingLow = () => originalData.sort((a,b) => parseFloat(b.rating) - parseFloat(a.rating))
-    const ratingHigh = () => originalData.sort((a,b) => parseFloat(a.rating) - parseFloat(b.rating))
+  // const filterPrice = (priceRanking) => {
+  //     if (priceRanking === 'Price') return
+  //     const dataRank = priceRanking === 'Low' ? setFilterTerm('price high') : setFilterTerm('price low')
+  //     setCurrentListData(dataRank)
+  // }
 
-    const filterPrice = (priceRanking) => {
-        if (priceRanking === 'Price') return
-        const dataRank = priceRanking === 'Low' ? setFilterTerm('price high') : setFilterTerm('price low')
-        setCurrentListData(dataRank)
-    }
+  // const filterRating = (rating) => {
+  //     if (rating === 'Rating') return
 
-    const filterRating = (rating) => {
-        if (rating === 'Rating') return
+  //     const dataRank = rating === 'Low' ? setFilterTerm('rating high') : setFilterTerm('rating low')
+  //     setCurrentListData(dataRank)
+  // }
 
-        const dataRank = rating === 'Low' ? setFilterTerm('rating high') : setFilterTerm('rating low')
-        setCurrentListData(dataRank)
-    }
+  //  useEffect(() => {
+  //     if(filterTerm ) {
 
-     useEffect(() => {
-        if(filterTerm ) {
+  //        if( filterTerm === 'price high') {
+  //            const newList = priceHigh()
+  //            setCurrentListData(newList)
+  //        }
 
-           if( filterTerm === 'price high') {
-               const newList = priceHigh()
-               setCurrentListData(newList)
-           }
+  //         if(filterTerm === 'price low') {
+  //             const newList = priceLow()
+  //             setCurrentListData(newList)
+  //         }
 
-            if(filterTerm === 'price low') {
-                const newList = priceLow()
-                setCurrentListData(newList)
-            }
+  //         if(filterTerm === 'rating high') {
+  //             const newList = ratingHigh()
+  //             setCurrentListData(newList)
+  //         }
 
-            if(filterTerm === 'rating high') {
-                const newList = ratingHigh()
-                setCurrentListData(newList)
-            }
+  //         if(filterTerm === 'rating low') {
+  //             const newList = ratingLow()
+  //             setCurrentListData(newList)
+  //         }
+  //     }
 
-            if(filterTerm === 'rating low') {
-                const newList = ratingLow()
-                setCurrentListData(newList)
-            }
-        }
+  //     !currentListData && setCurrentListData(data)
 
+  // }, [currentListData])
 
-        !currentListData && setCurrentListData(data)
-       
-    }, [currentListData])
+  // const listData= currentListData || originalData
 
-    const listData= currentListData || originalData
+  // const getPharmacies = () => {
+  //     alert('you need to be logged in to view')
+  // }
 
-    const getPharmacies = () => {
-        alert('you need to be logged in to view')
-    }
-    
-            
-    return (
-        <>
-            <main className='list'>
-            <button onClick={() => window.location.reload()}>Reset</button>
+  return (
+    <>
+      <main className="list">
+        {console.log(data)}
+        {/* <button onClick={() => window.location.reload()}>Reset</button>
                 <div>
 
                     
@@ -96,15 +94,13 @@ const List = ({data}) => {
                         <button onClick={getPharmacies}>Get Pharmacies</button>
                     </li>
                 )}
-                </ul>}
-            </main>
-        </>
-    )
-}
+                </ul>} */}
+      </main>
+    </>
+  );
+};
 
-export default List
-
-
+export default List;
 
 /**
  
