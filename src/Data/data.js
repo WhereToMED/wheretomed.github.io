@@ -1,6 +1,7 @@
 export const medicines = [
   {
     generic: "Amodiaquine + Artesunate - 135mg / 50mg - Tablet",
+    dose: "135mg / 50mg",
     category: "antimalaria",
     medicine_id: "amoart",
     locations: ["North Industrial Area", "Dzorwulu", "Spintex", "Mile 11"],
@@ -8,6 +9,7 @@ export const medicines = [
   },
   {
     generic: "Amodiaquine + Artesunate - 67.5mg / 25mg - Tablet",
+    dose: "67.5mg / 25mg",
     category: "antimalaria",
     medicine_id: "amoart",
     locations: ["North Industrial Area", "Dzorwulu", "Spintex", "Mile 11"],
@@ -15,6 +17,7 @@ export const medicines = [
   },
   {
     generic: "Artemether + Lumefantrine - 20mg / 120mg - Tablet",
+    dose: "20mg / 120mg",
     category: "antimalaria",
     medicine_id: "ARTLUM",
     locations: ["North Industrial Area", "Dzorwulu", "Spintex", "Mile 11"],
@@ -22,6 +25,7 @@ export const medicines = [
   },
   {
     generic: "Quinine - 300mg - Tablet",
+    dose: "20mg / 120mg",
     category: "antimalaria",
     medicine_id: "QUININ",
     locations: ["North Industrial Area", "Dzorwulu", "Spintex", "Mile 11"],
@@ -39,6 +43,7 @@ export const allPharmacies = [
       {
         name: "Quinine - 300mg - Tablet",
         price: 2,
+        dose: "300mg",
         manufacture_ids: [
           {
             name: "Alpharma",
@@ -63,6 +68,7 @@ export const allPharmacies = [
       {
         name: "Artemether + Lumefantrine - 20mg / 120mg - Tablet",
         price: 4,
+        dose: "20mg / 120mg",
         manufacture_ids: [
           {
             name: "Novartis Pharma",
@@ -93,6 +99,7 @@ export const allPharmacies = [
       {
         name: "Amodiaquine + Artesunate - 135mg / 50mg - Tablet",
         price: 7,
+        dose: "135mg / 50mg",
         manufacture_ids: [
           {
             name: "Astral Pharmaceutical",
@@ -117,6 +124,7 @@ export const allPharmacies = [
       {
         name: "Amodiaquine + Artesunate - 67.5mg / 25mg - Tablet",
         price: 12,
+        dose: "67.5mg / 25mg",
         manufacture_ids: [
           {
             name: "Astral Pharmaceutical",
@@ -149,6 +157,7 @@ export const allPharmacies = [
       {
         name: "Amodiaquine + Artesunate - 135mg / 50mg - Tablet",
         price: 6,
+        dose: "135mg / 50mg",
         manufacture_ids: [
           {
             name: "IPCA Laboratories Ltd",
@@ -173,6 +182,7 @@ export const allPharmacies = [
       {
         name: "Amodiaquine + Artesunate - 67.5mg / 25mg - Tablet",
         price: 12,
+        dose: "67.5mg / 25mg",
         manufacture_ids: [
           {
             name: "IPCA Laboratories Ltd",
@@ -197,6 +207,7 @@ export const allPharmacies = [
       {
         name: "Artemether + Lumefantrine - 20mg / 120mg - Tablet",
         price: 1,
+        dose: "20mg / 120mg",
         manufacture_ids: [
           {
             name: "Novartis Pharma",
@@ -221,6 +232,7 @@ export const allPharmacies = [
       {
         name: "Quinine - 300mg - Tablet",
         price: 5,
+        dose: "300mg",
         manufacture_ids: [
           {
             name: "Co-Pharma",
