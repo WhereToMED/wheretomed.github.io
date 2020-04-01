@@ -2,94 +2,40 @@ import React, { useState, useEffect } from "react";
 import "./style.scss";
 
 const List = ({ data, medicine }) => {
-  // const originalData = data
-
-  // const [filterTerm, setFilterTerm] = useState();
-  // const [currentListData, setCurrentListData] = useState();
   const [showOverlay, setShowOverlay] = useState(false);
   const [medicineOnDisplayDetails, setMedicineOnDisplayDetails] = useState();
-  // const priceLow = () => originalData.sort((a,b) => parseFloat(b.price) - parseFloat(a.price))
-  // const priceHigh = () => originalData.sort((a,b) => parseFloat(a.price) - parseFloat(b.price))
-
-  // const ratingLow = () => originalData.sort((a,b) => parseFloat(b.rating) - parseFloat(a.rating))
-  // const ratingHigh = () => originalData.sort((a,b) => parseFloat(a.rating) - parseFloat(b.rating))
-
-  // const filterPrice = (priceRanking) => {
-  //     if (priceRanking === 'Price') return
-  //     const dataRank = priceRanking === 'Low' ? setFilterTerm('price high') : setFilterTerm('price low')
-  //     setCurrentListData(dataRank)
-  // }
-
-  // const filterRating = (rating) => {
-  //     if (rating === 'Rating') return
-
-  //     const dataRank = rating === 'Low' ? setFilterTerm('rating high') : setFilterTerm('rating low')
-  //     setCurrentListData(dataRank)
-  // }
-
-  //  useEffect(() => {
-  //     if(filterTerm ) {
-
-  //        if( filterTerm === 'price high') {
-  //            const newList = priceHigh()
-  //            setCurrentListData(newList)
-  //        }
-
-  //         if(filterTerm === 'price low') {
-  //             const newList = priceLow()
-  //             setCurrentListData(newList)
-  //         }
-
-  //         if(filterTerm === 'rating high') {
-  //             const newList = ratingHigh()
-  //             setCurrentListData(newList)
-  //         }
-
-  //         if(filterTerm === 'rating low') {
-  //             const newList = ratingLow()
-  //             setCurrentListData(newList)
-  //         }
-  //     }
-
-  //     !currentListData && setCurrentListData(data)
-
-  // }, [currentListData])
-
-  // const listData= currentListData || originalData
-
-  // const getPharmacies = () => {
-  //     alert('you need to be logged in to view')
-  // }
+  const [originalData, setOriginalData] = useState(data);
+  const [listData, setListData] = useState();
+  const [currentData, setCurrentData] = useState();
+  const [priceCount, setPriceCount] = useState(0);
 
   const onMedicineButtonClick = (d, e) => {
     e.preventDefault();
     setShowOverlay(true);
     d && setMedicineOnDisplayDetails(d);
-    console.log(d);
+  };
+
+  useEffect(() => {
+    if (!listData) setCurrentData(originalData);
+    listData && setCurrentData(listData);
+  }, [listData, currentData]);
+
+  const filterPrice = () => {
+    const newData =
+      priceCount === 0
+        ? originalData.sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
+        : originalData.sort(
+            (a, b) => parseFloat(b.price) - parseFloat(a.price)
+          );
+
+    priceCount === 0 ? setPriceCount(1) : setPriceCount(0);
+
+    setListData(newData);
   };
 
   return (
     <>
       <div className="listContainer">
-        <a href="#" onClick={() => window.location.reload()}>{`<< Go Back`}</a>
-        <div className="filters">
-          <ul className="filtersList">
-            Sort by:
-            <li>
-              <button>Price</button>
-            </li>
-            <li>
-              <button>Location </button>
-            </li>
-            <li>
-              <button>Service</button>
-            </li>
-            <li>
-              <button>Availability </button>
-            </li>
-          </ul>
-        </div>
-
         {medicineOnDisplayDetails && showOverlay && (
           <div className="medicineDetails">
             <h3>{medicineOnDisplayDetails.name.split("-")[0]}</h3>
@@ -129,12 +75,31 @@ const List = ({ data, medicine }) => {
           </div>
         )}
 
+        <a href="#" onClick={() => window.location.reload()}>{`<< Go Back`}</a>
+        <div className="filters">
+          <ul className="filtersList">
+            Sort by:
+            <li>
+              <button onClick={() => filterPrice()}>Price</button>
+            </li>
+            <li>
+              <button>Location </button>
+            </li>
+            <li>
+              <button>Service</button>
+            </li>
+            <li>
+              <button>Availability </button>
+            </li>
+          </ul>
+        </div>
+
         <main className="list">
-          {data && (
+          {currentData && (
             <>
               <h3 className="medicineName">{medicine}</h3>
               <ul>
-                {data.map((d, index) => (
+                {currentData.map((d, index) => (
                   <li key={index}>
                     <button onClick={e => onMedicineButtonClick(d, e)}>
                       <p>{`${index + 1}. ${d.pName} - `}</p>
@@ -145,26 +110,6 @@ const List = ({ data, medicine }) => {
               </ul>
             </>
           )}
-          {/* <button onClick={() => window.location.reload()}>Reset</button>
-                <div>
-
-                    
-                    Filter by:
-                        <select onChange={(event) =>filterPrice(event.currentTarget.value) }>
-                            <option>Price</option>
-                            <option>Low</option>
-                            <option>High</option>
-                        </select>
-                        <select onChange={(event) =>filterRating(event.currentTarget.value) }>
-                            <option>Rating</option>
-                            <option>Low</option>
-                            <option>High</option>
-                        </select>
-                       
-
-
-                </div>
-              */}
         </main>
         {showOverlay && (
           <div className="overlay" onClick={() => setShowOverlay(false)} />
@@ -175,17 +120,3 @@ const List = ({ data, medicine }) => {
 };
 
 export default List;
-
-/**
- 
-
-<h4>{`Locations: ${d.locations}`}</h4>
- 
- Sort out dynamic filtering of list
-
- Filter list on search of medication - need to do
-
- on Show all pharmacies- prompt to log in
-
- Refactor and tidy up data
- */

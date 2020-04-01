@@ -15,7 +15,7 @@
   }
 
   .medicineDetails {
-    padding: 1rem 2rem;
+    padding: 2rem;
     z-index: 1;
     position: relative;
     background-color: #f8f9fa;
@@ -26,6 +26,7 @@
     }
 
     .medicineDetailsList {
+      padding-left: 0;
       list-style: none;
 
       .listPrice {
